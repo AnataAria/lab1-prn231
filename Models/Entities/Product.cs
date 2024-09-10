@@ -15,6 +15,7 @@ public class Product
     [Required]
     public int UnitsInStock {get; set;}
     [Required]
+    [Column(TypeName = "decimal(18, 2)")]
     public decimal UnitPrice {get; set;}
     public virtual Category Category {get; set;}
 }
