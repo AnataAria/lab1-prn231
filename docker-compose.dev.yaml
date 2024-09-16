@@ -3,7 +3,7 @@ services:
     container_name: sqlserver
     image: mcr.microsoft.com/mssql/server:2019-latest
     environment:
-      MSSQL_SA_PASSWORD: "12345"
+      MSSQL_SA_PASSWORD: "Vinh123456789."
       ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
@@ -19,7 +19,9 @@ services:
     networks:
       lab1-api-networks:
     ports:
-      - 8080:5018
+      - 8080:80
+    environment:
+      - ASPNETCORE_URLS=http://+:80
     depends_on:
       - sqlserver
     restart: always
