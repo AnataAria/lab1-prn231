@@ -12,6 +12,7 @@ public class StoreDBContext : DbContext
         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
         IConfigurationRoot config = builder.Build();
         optionsBuilder.UseSqlServer(config.GetConnectionString("StoreDB"));
+        // optionsBuilder.UseSqlServer("Server=(local); Uid=sa; Pwd=Vinh123456789.;Database=StoreDB;TrustServerCertificate=True;");
     }
 
     public virtual DbSet<Category> Categories {get; set;}

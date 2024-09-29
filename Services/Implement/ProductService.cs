@@ -1,10 +1,13 @@
 using Models.Entities;
+using Repositories;
 
 namespace Services.Implement;
 
-public class ProductService : IProductService
+public class ProductService(StoreDBContext dbContext) : IProductService
 {
-    public override Product GetProductById(int prodId)
+    protected readonly StoreDBContext databaseContext = dbContext;
+    
+    public Product GetProductById(int prodId)
     {
         try {
             return databaseContext.Products.SingleOrDefault(x => x.ProductId == prodId);
@@ -13,7 +16,7 @@ public class ProductService : IProductService
         }
     }
 
-    public override List<Product> GetProducts()
+    public List<Product> GetProducts()
     {
         try {
             return databaseContext.Products.ToList();
@@ -22,7 +25,7 @@ public class ProductService : IProductService
         }
     }
 
-    public override void RemoveProduct(Product p)
+    public void RemoveProduct(Product p)
     {
         try {
             databaseContext.Products.Remove(p);
@@ -32,7 +35,7 @@ public class ProductService : IProductService
         }
     }
 
-    public override void SaveProduct(Product p)
+    public void SaveProduct(Product p)
     {
         try {
             databaseContext.Products.Add(p);
@@ -42,7 +45,7 @@ public class ProductService : IProductService
         }
     }
 
-    public override void UpdateProduct(Product p)
+    public void UpdateProduct(Product p)
     {
         try {
             databaseContext.Entry<Product>(p).State = Microsoft.EntityFrameworkCore.EntityState.Modified;

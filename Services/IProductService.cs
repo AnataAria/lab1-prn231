@@ -3,7 +3,7 @@ using Models.Entities;
 
 namespace Services;
 
-public abstract class IProductService: IBaseService
+public interface IProductService
 {
     public abstract List<Product> GetProducts ();
     public abstract Product GetProductById (int prodId);

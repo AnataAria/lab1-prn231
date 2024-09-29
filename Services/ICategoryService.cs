@@ -1,9 +1,11 @@
 using System.Reflection;
 using Models.Entities;
+using Repositories;
 
 namespace Services;
 
-public abstract class ICategoryService: IBaseService
+public interface ICategoryService
 {
-    public abstract List<Category> GetCategories ();
+    public List<Category> GetCategories();
+    public abstract Category GetCategoryById (int categoryId);
 }

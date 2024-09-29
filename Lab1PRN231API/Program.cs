@@ -1,3 +1,7 @@
+using Repositories;
+using Services;
+using Services.Implement;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,11 +9,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddControllers();
+builder.Services.AddDbContext<StoreDBContext>(); 
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseSwagger();
 app.UseSwaggerUI();
+app.MapControllers();
 // app.UseHttpsRedirection();
 
 app.Run();
